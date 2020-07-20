@@ -20,7 +20,7 @@ class Auth extends React.Component{
     }
     history = new createBrowserHistory();
     get_token = ()=>{
-        this.history.push('https://oauth.vk.com/authorize?client_id=7540247&redirect_uri=http://localhost:3000/&scope=friends&display=page&response_type=token');
+        this.history.push('https://oauth.vk.com/authorize?client_id=7540247&redirect_uri=https://tofftytestoauth.netlify.app/&scope=friends&display=page&response_type=token');
 
     }
     exit =  ()=>{
@@ -30,6 +30,9 @@ class Auth extends React.Component{
     }
     renderData = ()=>{
         if (this.state.auth && this.state.data.response){
+            if (this.state.data.response.items.length === 0 ){
+                return <div>You have no friends :(</div>
+            }
             return this.state.data.response.items
                 .map(person =>
                 <div className="friend">
@@ -44,9 +47,9 @@ class Auth extends React.Component{
                 </div>
             )
         }
-        else {
+
             return <div>Please Log in</div>
-        }
+
 
     }
     renderName = ()=>{
