@@ -20,7 +20,7 @@ class Auth extends React.Component{
     }
     history = new createBrowserHistory();
     get_token = ()=>{
-        this.history.push('https://oauth.vk.com/authorize?client_id=7540247&redirect_uri=http://localhost:3000/&scope=friends&display=page&response_type=token');
+        this.history.push('https://oauth.vk.com/authorize?client_id=7540247&redirect_uri=https://tofftytestoauth.netlify.app/&scope=friends&display=page&response_type=token');
 
     }
     exit =  ()=>{
@@ -30,19 +30,27 @@ class Auth extends React.Component{
     }
     renderData = ()=>{
         if (this.state.auth && this.state.data.response){
-            return this.state.data.response.items
-                .map(person =>
-                <div className="friend">
+           /* console.log(this.state.data.response.items.length)*/
+            if(this.state.data.response.items.length === 0){
+               return <div>You have no friends</div>
+            }
 
-                    <img src={person.photo_200} className="friend__photo" alt="user_photo"/>
-                    <span>
+                return this.state.data.response.items
+                    .map(person =>
+                            <div className="friend">
+
+                                <img src={person.photo_200} className="friend__photo" alt="user_photo"/>
+                                <span>
                         {person.first_name}
                     </span>
-                    <span>
+                                <span>
                         {person.last_name}
                     </span>
-                </div>
-            )
+                            </div>
+                    )
+
+
+
         }
         else {
             return <div>Please Log in</div>
@@ -88,6 +96,7 @@ class Auth extends React.Component{
                      data: response,
                      auth: true
                  });
+
 
              }).catch((err) => {
              console.log(err);
