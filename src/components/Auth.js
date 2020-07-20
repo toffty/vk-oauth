@@ -20,7 +20,7 @@ class Auth extends React.Component{
     }
     history = new createBrowserHistory();
     get_token = ()=>{
-        this.history.push('https://oauth.vk.com/authorize?client_id=7540247&redirect_uri=https://vk-oauth.vercel.app/&scope=friends&display=page&response_type=token');
+        this.history.push('https://oauth.vk.com/authorize?client_id=7540247&redirect_uri=https://testoauth.vercel.app/&scope=friends&display=page&response_type=token');
 
     }
     exit =  ()=>{
